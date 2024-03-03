@@ -1,5 +1,8 @@
 #include <iostream>
 using namespace std;
 int main(){
-    cout<<"sonunda";
+    int a= 10;
+    int b=a+20;
+    int c=a+b;
+    cout<<"sonunda"<<a+b+c;
 }
