@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using System.Numerics;
+public class input{
+    public static void Main(){
+        Console.WriteLine("Adinizi girin");
+        string ad=Console.ReadLine();
+        Console.WriteLine(ad);
+    }
+}
