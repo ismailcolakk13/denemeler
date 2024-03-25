@@ -1,0 +1,6 @@
+Ad        Soyad     Ogrenci No     Bolum     
+Ali       Yildirim  120            Endustri  
+Muhibbi   Suleyman  121            Bilgisayar
+Veli      Kara      122            Insaat    
+Zeki      Yalin     123            Makine    
+Fikri     Yilmaz    124            Isletme   
