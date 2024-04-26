@@ -1,15 +1,24 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 struct student
 {
     char ad[20];
     char soyad[20];
     int ogrno;
     char bolum[20];
+    struct student* next;
 };
+void printname(struct student* r){
+    struct student * iter=r;
+    while(iter!=NULL){
+        printf("%d\n",iter->ogrno);
+        iter=iter->next;
+    }
+}
 int main(){
     FILE* cfptr;
-    cfptr= fopen("newtext.txt","w");//Dosyaya yazma bölümü
+    /*cfptr= fopen("newtext.txt","w");//Dosyaya yazma bölümü
     struct student liste[5];
     strcpy(liste[0].ad,"Ali");
     strcpy(liste[0].soyad,"Yildirim");
@@ -43,10 +52,10 @@ int main(){
         printf("Dosya açılamadı");
     }
     fclose(cfptr);
-    printf("Dosyaya yazma tamamlandı\n");
+    printf("Dosyaya yazma tamamlandı\n");*/
 
     //Dosyada öğrenci numarası ile sorgulama bölümü
-    int arananNo;
+    /*int arananNo;
     printf("Ogrenci numarası ile sorgu:\n");
     scanf("%d",&arananNo);
     cfptr=fopen("newtext.txt","r");
@@ -63,6 +72,36 @@ int main(){
             printf("%-20s\n%-10s%-10s%-10d%-10s\n","Aradiginiz ogrencinin bilgileri:",ad,soyad,ogrno2,bolum);
         }      
     }
+    fclose(cfptr);*/
+
+    cfptr=fopen("newtext.txt","r");
+    if(cfptr==NULL){
+        printf("dosya acilamadi\n");
+    }
+    char ad[10],soyad[10],bolum[20];
+    int ogrno2;
+    char baslik[100];
+    fscanf(cfptr,"%s",baslik);//ilk satırdan kurtulma
+    struct student* head=NULL;
+    while(!feof(cfptr)){
+        fscanf(cfptr, "%s%s%d%s", ad, soyad, &ogrno2, bolum);
+        struct student* temp=(struct student*)malloc(sizeof(struct student));
+        if(temp==NULL){
+            printf("hata\n");
+        }
+        strcpy(temp->ad,ad);
+        strcpy(temp->soyad,soyad);
+        temp->ogrno=ogrno2;
+        strcpy(temp->bolum,bolum);
+        struct student* iter=head;
+        while (iter->next!=NULL)
+        {
+            iter=iter->next;
+        }
+        iter->next=(struct student*)malloc(sizeof(struct student));
+             
+    }
     fclose(cfptr);
+    printname(head);
     return 0;
 }
