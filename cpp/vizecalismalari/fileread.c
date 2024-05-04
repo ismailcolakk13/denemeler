@@ -16,6 +16,18 @@ void printname(struct student* r){
         iter=iter->next;
     }
 }
+void ekle(struct student*r,char ad[20],char soyad[20],int ogrno,char bolum[20]){
+    while(r->next!=NULL){
+        r=r->next;
+    }
+    r->next=(struct student*)malloc(sizeof(struct student));
+    strcpy(r->next->ad,ad);
+    strcpy(r->next->soyad,soyad);
+    r->next->ogrno=ogrno;
+    strcpy(r->next->bolum,bolum);
+    r->next->next=NULL;
+}
+
 int main(){
     FILE* cfptr;
     /*cfptr= fopen("newtext.txt","w");//Dosyaya yazma bölümü
@@ -82,24 +94,10 @@ int main(){
     int ogrno2;
     char baslik[100];
     fscanf(cfptr,"%s",baslik);//ilk satırdan kurtulma
-    struct student* head=NULL;
+    struct student* head=(struct student*)malloc(sizeof(struct student));
     while(!feof(cfptr)){
         fscanf(cfptr, "%s%s%d%s", ad, soyad, &ogrno2, bolum);
-        struct student* temp=(struct student*)malloc(sizeof(struct student));
-        if(temp==NULL){
-            printf("hata\n");
-        }
-        strcpy(temp->ad,ad);
-        strcpy(temp->soyad,soyad);
-        temp->ogrno=ogrno2;
-        strcpy(temp->bolum,bolum);
-        struct student* iter=head;
-        while (iter->next!=NULL)
-        {
-            iter=iter->next;
-        }
-        iter->next=(struct student*)malloc(sizeof(struct student));
-             
+        ekle(head,ad,soyad,ogrno2,bolum);
     }
     fclose(cfptr);
     printname(head);
