@@ -21,4 +21,3 @@ int main(){
     }while(tahmin!=rastgelesayi);
     printf("Congratulations! You guessed the number %d correctly",tahmin);
 }
-
